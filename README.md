@@ -22,17 +22,19 @@ The screenshots below show two instances of the same application opened
 side by side for comparison. This setup demonstrates the
 per-distribution monitoring and inspection views.
 
-### Performance monitoring
+### Landing Screen
 
-![Per-distribution CPU and memory monitoring comparison](images/wsl-manager-2.png)
+![HomeScreen](images/wsl-manager-2.png)
+
+### Performance Monitoring
+
+![CPU monitoring validation comparison](images/cpuValidation.png)
 
 ### Process monitoring
 
 ![Per-distribution process monitoring comparison](images/wsl-manager-3.png)
 
-### CPU validation
 
-![CPU monitoring validation comparison](images/cpuValidation.png)
 
 ## Architecture
 
@@ -48,7 +50,7 @@ and background data collection.
 - Distribution metadata module (`wsl-info.js`): Queries distribution status and metadata through Windows-side WSL commands.
 - Process monitoring worker (`processesHelper.py`): Runs periodically to retrieve process information for the process list and hierarchy views.
 
-### Design decisions
+### Some Design decisions
 
 Resource monitoring uses a persistent worker to avoid repeatedly starting
 the Python interpreter for each measurement. Process information is
@@ -85,6 +87,7 @@ CPU utilisation is estimated from the change in this total between
 successive samples, converting clock ticks into seconds using
 `getconf CLK_TCK`. The result is normalised by the detected CPU core
 count to express usage relative to the available WSL CPU capacity.
+
 
 
 ### Memory and swap
